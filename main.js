@@ -1,10 +1,11 @@
 function calculaDolar(tipoDolar, montoDolar) {
-    const dolarOficial = 365.5; // Valor fijado por el Bco. Central
+    const dolarOficial = 365.5; 
     const pais = 30;
     const ganancias = 45;
     const bienesPersonales = 25;
-    const dolarMEP = 850; // Valor con AL30D
-    const dolarCCL = 950; // Valor con CEADERS
+    const dolarMEP = 850; 
+    const dolarCCL = 950; 
+    let textoFinal = "Error en el Calculo";
 
     if (tipoDolar === "qatar") {
         console.log("Qatar");
@@ -27,13 +28,13 @@ function calculaDolar(tipoDolar, montoDolar) {
 
     else if (tipoDolar === "mep") {
         console.log("MEP");
-        valorFinal = dolarMEP * montoDolar;
+        let valorFinal = dolarMEP * montoDolar;
         textoFinal = "CALCULO DOLAR vs. PESOS (MEP)\n\nDolares: " + montoDolar + " U$D\n\nCotización MEP: $" + dolarMEP + "\nBono operado: AL30" + "\n\nTOTAL: $" + valorFinal;
     }
 
     else { // CCL
         console.log("CCL");
-        valorFinal = dolarCCL * montoDolar;
+        let valorFinal = dolarCCL * montoDolar;
         textoFinal = "CALCULO DOLAR vs. PESOS (CCL)\n\nDolares: " + montoDolar + " U$D\n\nCotización CCL: $" + dolarCCL + "\nBono operado: GD30" + "\n\nTOTAL: $" + valorFinal;
     }
     return textoFinal;
@@ -67,5 +68,5 @@ do {
         console.log("error");
         alert("Elija un dolar válido!!!")
     }
-} while (correcto == false);  // Si no elige un dolar valido, se vuelve a preguntar.
+} while (correcto == false); 
 

@@ -154,7 +154,7 @@ function girarRuleta() {
     if (cantidadApostada === false) { return; }
     let numero = obtenerNumero();
     ganancias = calcularGanancias(numero, inputArray);
-    agregarUltimoNumero(numero, ultimosNumeros, coloresNums, cantidadApostada, saldo, ganancias, false);
+    agregarUltimoNumero(numero, ultimosNumeros, coloresNums, cantidadApostada, saldo, ganancias, ganancias > 0);
     saldo = saldo - cantidadApostada + ganancias;
     mostrarUltimosNums(ultimosNumeros, coloresNums);
     actualizarSaldo();

@@ -1,16 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+
     <title>Pre-entrega 1</title>
 </head>
-<body>
-    <h1>Primera Entrega JS</h1>
-    <p>1- Elija el tipo de Dolar (U$D) que desea utilizar.</p>
-    <p>2- Indique el monto, en Dolares (U$D), a convertir en su valor en Pesos ($).</p>
-    <p>3- Los cálculos aparecerán en la caja de texto.</p>
-    <textarea id="cuadroTexto" name="cuadritoTexto" rows="10" cols="100" readonly>Calculating....</textarea>
+
+<body class="p-0 m-0 colorFondo">
+    <main class="mainClass p-0 m-0">
+        <div class="row arriba paddingTop">
+            <div class="col-4 colorFondo visorSaldo">
+                <input type="text" id="cuadroSaldo" value=" SALDO:  $ 00000" class="field left" readonly>
+            </div>
+            <div class="col-6 colorFondo"><button onclick="agregarSaldo()" class="favorite styled" type="button">Agregar
+                    Saldo</button></div>
+            <div class="col-2 colorFondo"></div>
+        </div>
+        <div class="row medio">
+            <div class="col-4 colorFondo">
+                <p class="apuestasTexto paddingTop">APUESTAS: </p>
+                <div class="d-flex justify-content-around">
+                    <div>
+                        <div class="paddingTop">
+                            <label for="num1">1 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num1" name="num1" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label class="aLaDerecha" for="num4">4 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num4" name="num4" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num7">7 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num7" name="num7" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num10">10 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num10" name="num10" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num13">13 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num13" name="num13" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num16">16 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num16" name="num16" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num19">19 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num19" name="num19" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num22">22 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num22" name="num22" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num25">25 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num25" name="num25" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num28">28 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num28" name="num28" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num31">31 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num31" name="num31" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num34">34 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num34" name="num34" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="todoRojo">ROJO</label>
+                            <input class="inputsNums inputRojo" type="text" id="todoRojo" name="todoRojo" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="paddingTop">
+                            <label for="num2">2 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num2" name="num2" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num5">5 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num5" name="num5" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num8">8 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num8" name="num8" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num11">11 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num11" name="num11" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num14">14 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num14" name="num14" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num17">17 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num17" name="num17" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num20">20 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num20" name="num20" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num23">23 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num23" name="num23" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num26">26 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num26" name="num26" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num29">29 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num29" name="num29" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num32">32 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num32" name="num32" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num35">35 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num35" name="num35" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num0">0 (verde):</label>
+                            <input class="inputsNums inputVerde" type="text" id="num0" name="num0" />
+                        </div>
+                        <div class="centrarBoton paddingTop">
+                            <button onclick="limpiarCampos()" class="favorite styled tamanioBoton" type="button">Limpiar</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="paddingTop">
+                            <label for="num3">3 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num3" name="num3" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num6">6 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num6" name="num6" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num9">9 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num9" name="num9" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num12">12 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num12" name="num12" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num15">15 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num15" name="num15" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num18">18 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num18" name="num18" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num21">21 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num21" name="num21" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num24">24 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num24" name="num24" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num27">27 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num27" name="num27" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num30">30 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num30" name="num30" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num33">33 (negro):</label>
+                            <input class="inputsNums inputNegro" type="text" id="num33" name="num33" />
+                        </div>
+                        <div class="paddingTopMinimo">
+                            <label for="num36">36 (rojo):</label>
+                            <input class="inputsNums inputRojo" type="text" id="num36" name="num36" />
+                        </div>
+                        <div class="paddingTopMinimo diamante">
+                            <label for="todoNegro">NEGRO</label>
+                            <input class="inputsNums inputNegro" type="text" id="todoNegro" name="todoNegro" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 colorFondo">
+                <div class="roulette">
+                    <div class="wheel spin centrarRuleta">
+                        <img class="ruleta paddingTop" src="./ruleta.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 colorFondo">
+
+                <textarea readonly name="textarea" id="cuadroUltimosNums"
+                    class="field left ultimosNums"> Ultimos Numeros: </textarea>
+            </div>
+        </div>
+        <div class="row abajo">
+            <div class="col-4 colorFondo"></div>
+            <div class="col-6 colorFondo text-center align-middle">
+                <div class="centrarBoton">
+                    <button onclick="girarRuleta()" class="favorite styled" type="button">Girar!</button>
+                </div>
+            </div>
+            <div class="col-2 colorFondo"></div>
+        </div>
+    </main>
+
     <script src="main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

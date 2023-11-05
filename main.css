@@ -1,0 +1,152 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+}
+
+.arriba{
+    height: 8vh;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.medio{
+    height: 80vh;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.abajo{
+    height: 12vh;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgb(53, 51, 51);
+    background-image: linear-gradient(to top left,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2) 30%,
+            rgba(0, 0, 0, 0));
+    box-shadow:
+        inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+        inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.styled:hover {
+    background-color: rgb(9, 9, 9);
+}
+
+.styled:active {
+    box-shadow:
+        inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+        inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.ultimosNums {
+    height: 70vh;
+}
+
+.inputsNums {
+    width: 4vw;
+    height: auto;
+}
+
+.ruleta {
+    -webkit-transition: -webkit-transform 2s ease-out;
+}
+
+.visorSaldo {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.visorSaldo input{
+    margin-left: auto;
+    padding: 0;
+    width: 15vw;
+}
+
+.centrarBoton {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.centrarBoton button{
+    width: 15vw;
+    margin: 0;
+    padding: 0;
+}
+
+.centrarRuleta {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 100%;
+}
+
+.centrarRuleta img{
+    width: 35vw;
+    height: auto;
+}
+
+.agregarBorde{
+    border: 3px solid black;
+}
+
+.paddingTop{
+    padding-top: 15px!important;
+}
+
+.paddingTopMinimo{
+    padding-top: 5px!important;
+}
+
+.inputRojo{
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+.inputNegro{
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+.inputVerde{
+    background-color: green;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+.colorFondo{
+    background-color: rgb(212, 236, 204);
+}
+
+.tamanioBoton{
+    width: 10vw!important;
+}

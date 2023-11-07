@@ -182,6 +182,13 @@ const numerosYGrados = [
     { numero: 26, grados: 344 }
 ]
 
+const numerosYGradosNegativos = numerosYGrados.map(item => {
+    return {
+        numero: item.numero,
+        grados: item.grados + 366
+    };
+});
+
 function animarRuleta(numeroGanador, duration) {
     const resultado = numerosYGrados.find(item => item.numero === numeroGanador);
 
@@ -191,11 +198,11 @@ function animarRuleta(numeroGanador, duration) {
 }
 
 function reacomodarRuleta(numeroGanador, duration) {
-    const resultado = numerosYGrados.find(item => item.numero === numeroGanador);
+    const resultado = numerosYGradosNegativos.find(item => item.numero === numeroGanador);
 
     const image = document.getElementById('imgRuleta');
     image.style.transition = `transform ${duration / 1000}s ease-in-out`;
-    image.style.transform = `rotate(${366 + resultado.grados - 720}deg)`;
+    image.style.transform = `rotate(${resultado.grados - 720}deg)`;
 }
 
 function sleep(ms) {

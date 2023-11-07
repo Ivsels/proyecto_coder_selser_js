@@ -1,22 +1,11 @@
 let saldo = 0;
 const ultimosNumeros = [];
-const ultimosNumeros2 = [];
 const inputArray = [];
 const coloresNums = ["verde", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "negro", "rojo", "negro",
     "rojo", "negro", "rojo", "negro", "rojo", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro",
     "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo"];
 const numerosRuleta = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
-const numerosYGrados = [
-    { numero: 0, grados: 0 }, { numero: 32, grados: 10 }, { numero: 15, grados: 20 }, { numero: 19, grados: 30 },
-    { numero: 4, grados: 40 }, { numero: 21, grados: 50 }, { numero: 2, grados: 60 }, { numero: 25, grados: 70 },
-    { numero: 17, grados: 80 }, { numero: 34, grados: 90 }, { numero: 6, grados: 100 }, { numero: 27, grados: 110 },
-    { numero: 13, grados: 120 }, { numero: 36, grados: 130 }, { numero: 11, grados: 140 }, { numero: 30, grados: 150 },
-    { numero: 8, grados: 160 }, { numero: 23, grados: 170 }, { numero: 10, grados: 180 }, { numero: 5, grados: 190 },
-    { numero: 24, grados: 200 }, { numero: 16, grados: 210 }, { numero: 33, grados: 220 }, { numero: 1, grados: 230 },
-    { numero: 20, grados: 240 }, { numero: 14, grados: 250 }, { numero: 31, grados: 260 }, { numero: 9, grados: 270 },
-    { numero: 22, grados: 280 }, { numero: 18, grados: 290 }, { numero: 29, grados: 300 }, { numero: 7, grados: 310 },
-    { numero: 28, grados: 320 }, { numero: 12, grados: 330 }, { numero: 35, grados: 340 }, { numero: 3, grados: 350 },
-].map(item => ({ ...item, grados: item.grados - 374 }));
+
 
 class numeroDeLaRuleta {
     constructor(numero, color, saldoInicial, apuesta, ganancias, resultado) {
@@ -70,19 +59,19 @@ function obtenerNumero() {
 function agregarUltimoNumero(nuevoNumero, ultimosNumeros, coloresNums, apuestaTotal, ultimoSaldo, ganancias, resultado) {
     const ULTIMOSNUMS_MAX = 15;
     if (ultimosNumeros.length > ULTIMOSNUMS_MAX) { ultimosNumeros.pop(); }
-    ultimosNumeros.unshift([nuevoNumero, resultado]); // true ganador, false perdedor
-
-    if (ultimosNumeros2.length > ULTIMOSNUMS_MAX) { ultimosNumeros2.pop(); }
-    ultimosNumeros2.unshift([new numeroDeLaRuleta(nuevoNumero, coloresNums[parseInt(nuevoNumero)], ultimoSaldo, apuestaTotal, ganancias, resultado)]); // true ganador, false perdedor
-    console.log(ultimosNumeros2);
+    ultimosNumeros.unshift(new numeroDeLaRuleta(nuevoNumero, coloresNums[parseInt(nuevoNumero)], ultimoSaldo, apuestaTotal, ganancias, resultado)); // true ganador, false perdedor
+    console.log(ultimosNumeros);
+    /*console.log(ultimosNumeros[0]);
+    console.log(ultimosNumeros[0]["numero"]);
+    console.log(ultimosNumeros[0][0]);*/
 }
 
 function mostrarUltimosNums(ultimosNumeros, coloresNums) {
     texto = " Ultimos Numeros: \n\n";
     for (i = 0; i < ultimosNumeros.length; i++) {
-        numerito = parseInt(ultimosNumeros[i][0]);
+        numerito = parseInt(ultimosNumeros[i].numero);
         color = coloresNums[numerito];
-        resultado = ultimosNumeros[i][1];
+        resultado = ultimosNumeros[i].resultado;
         textoMostrar = "  ";
 
         if (numerito <= 9) { texto += "  " + numerito + "\t"; }
@@ -127,8 +116,6 @@ function controlDeMontos(inputArray) {
         }
     }
     montoApuesta = inputArray.reduce((prev, next) => prev + next, 0);
-    console.log(montoApuesta);
-    console.log(inputArray);
 
     if (montoApuesta > saldo) {
         alert("No te alcanza la plata!!");
@@ -168,24 +155,32 @@ function girarRuleta() {
     ganancias = calcularGanancias(numero, inputArray);
     agregarUltimoNumero(numero, ultimosNumeros, coloresNums, cantidadApostada, saldo, ganancias, ganancias > 0);
     saldo = saldo - cantidadApostada + ganancias;
-    mostrarUltimosNums(ultimosNumeros, coloresNums);
-    actualizarSaldo();
     document.getElementById("botonGirar").disabled = true;
     document.getElementById("botonSaldo").disabled = true;
 
-    sleep(4000).then(() => {
+    sleep(4000).then(() => {  // Deshabilito botones para que el usuario no haga c***das
+        mostrarUltimosNums(ultimosNumeros, coloresNums);
+        actualizarSaldo();
         reacomodarRuleta(0, 500);
-        sleep(2000).then(() => {
+        sleep(600).then(() => {
             document.getElementById("botonGirar").disabled = false;
             document.getElementById("botonSaldo").disabled = false;
         });
     });
 }
-/*
-function animarRuleta() {
-    const rotated = document.getElementById("imgRuleta");
-    rotated.style.transform = "rotate(900deg)";
-}*/
+
+const numerosYGrados = [
+    { numero: 0, grados: 354 }, { numero: 32, grados: 6 }, { numero: 15, grados: 15 }, { numero: 19, grados: 25 },
+    { numero: 4, grados: 35 }, { numero: 21, grados: 45 }, { numero: 2, grados: 55 }, { numero: 25, grados: 65 },
+    { numero: 17, grados: 75 }, { numero: 34, grados: 85 }, { numero: 6, grados: 95 }, { numero: 27, grados: 105 },
+    { numero: 13, grados: 114 }, { numero: 36, grados: 124 }, { numero: 11, grados: 133 }, { numero: 30, grados: 142 },
+    { numero: 8, grados: 151 }, { numero: 23, grados: 161 }, { numero: 10, grados: 171 }, { numero: 5, grados: 181 },
+    { numero: 24, grados: 190 }, { numero: 16, grados: 199 }, { numero: 33, grados: 209 }, { numero: 1, grados: 218 },
+    { numero: 20, grados: 227 }, { numero: 14, grados: 236 }, { numero: 31, grados: 246 }, { numero: 9, grados: 256 },
+    { numero: 22, grados: 266 }, { numero: 18, grados: 276 }, { numero: 29, grados: 286 }, { numero: 7, grados: 296 },
+    { numero: 28, grados: 306 }, { numero: 12, grados: 315 }, { numero: 35, grados: 324 }, { numero: 3, grados: 334 },
+    { numero: 26, grados: 344 }
+]
 
 function animarRuleta(numeroGanador, duration) {
     const resultado = numerosYGrados.find(item => item.numero === numeroGanador);
@@ -200,25 +195,9 @@ function reacomodarRuleta(numeroGanador, duration) {
 
     const image = document.getElementById('imgRuleta');
     image.style.transition = `transform ${duration / 1000}s ease-in-out`;
-    image.style.transform = `rotate(${374 + resultado.grados}deg)`;
+    image.style.transform = `rotate(${366 + resultado.grados - 720}deg)`;
 }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
-
-/*
-var img = document.querySelector('img');
-img.addEventListener('click', onClick, false);
-
-
-function onClick() {
-    this.removeAttribute('style');
-    var deg = 0 + Math.round(Math.random() * 360);
-    var css = '-webkit-transform: rotate(' + deg + 'deg);';
-    this.setAttribute(
-        'style', css
-    );
-}*/

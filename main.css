@@ -1,25 +1,25 @@
-*{
+* {
     padding: 0;
     margin: 0;
     font-weight: 700;
 }
 
-.arriba{
+.arriba {
     height: 8vh;
-    margin: 0!important;
-    padding: 0!important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.medio{
+.medio {
     height: 80vh;
-    margin: 0!important;
-    padding: 0!important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-.abajo{
+.abajo {
     height: 12vh;
-    margin: 0!important;
-    padding: 0!important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .styled {
@@ -60,10 +60,6 @@
     height: auto;
 }
 
-.ruleta {
-    -webkit-transition: -webkit-transform 2s ease-out;
-}
-
 .visorSaldo {
     margin: 0;
     padding: 0;
@@ -72,7 +68,7 @@
     justify-content: center;
 }
 
-.visorSaldo input{
+.visorSaldo input {
     margin-left: auto;
     padding: 0;
     width: 15vw;
@@ -88,13 +84,57 @@
     align-items: center;
 }
 
-.centrarBoton button{
+.centrarBoton button {
     width: 15vw;
     margin: 0;
     padding: 0;
 }
 
+.agregarBorde {
+    border: 3px solid black;
+}
+
+.paddingTop {
+    padding-top: 15px !important;
+}
+
+.paddingTopMinimo {
+    padding-top: 5px !important;
+}
+
+.inputRojo {
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+.inputNegro {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+.inputVerde {
+    background-color: green;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+.colorFondo {
+    background-color: rgb(212, 236, 204);
+}
+
+.tamanioBoton {
+    width: 10vw !important;
+}
+
 .centrarRuleta {
+    position: relative;
+    top: 0;
+    left: 0;
     margin: 0;
     padding: 0;
     display: flex;
@@ -105,48 +145,14 @@
     height: 100%;
 }
 
-.centrarRuleta img{
+.rula {
+    position: relative;
     width: 35vw;
     height: auto;
 }
 
-.agregarBorde{
-    border: 3px solid black;
-}
-
-.paddingTop{
-    padding-top: 15px!important;
-}
-
-.paddingTopMinimo{
-    padding-top: 5px!important;
-}
-
-.inputRojo{
-    background-color: red;
-    color: white;
-    text-align: center;
-    font-weight: 600;
-}
-
-.inputNegro{
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-weight: 600;
-}
-
-.inputVerde{
-    background-color: green;
-    color: white;
-    text-align: center;
-    font-weight: 600;
-}
-
-.colorFondo{
-    background-color: rgb(212, 236, 204);
-}
-
-.tamanioBoton{
-    width: 10vw!important;
+.flecha{
+    position: absolute;
+    top: -40px;
+    right: 48%;
 }

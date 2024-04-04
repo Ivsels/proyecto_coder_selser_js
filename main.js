@@ -1,35 +1,26 @@
-let saldo = 0;
-const ultimosNumeros = [];
-const inputArray = [];
+let saldo = 100; // Empezas con 100 pe
+const ultimosNumeros = [];  // Sera un Array de Objetos
+const inputArray = []; // Array de los inputs de Apuesta
 const coloresNums = ["verde", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "negro", "rojo", "negro",
     "rojo", "negro", "rojo", "negro", "rojo", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro",
     "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo"];
 const numerosRuleta = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
 
-
-class numeroDeLaRuleta {
+class numeroDeLaRuleta {  // Clase para generar objetos "numero" que van saliendo en la Ruleta
     constructor(numero, color, saldoInicial, apuesta, ganancias, resultado) {
-        this.numero = numero;
+        this.numero = numero;  // el numero q salio en la ruleta
         this.color = color;
         this.hora = Date.now();
-        this.saldoInicial = saldoInicial;
-        this.ganancias = ganancias;
-        this.saldoFinal = saldoInicial + ganancias - apuesta;
-        this.apuesta = apuesta; // cuanto apostó
+        this.saldoInicial = saldoInicial;  // cuanta plata tenia el usuario cuando salio el numero
+        this.ganancias = ganancias; // cuanto gano
+        this.saldoFinal = saldoInicial + ganancias - apuesta;  // cuanto le quedo
+        this.apuesta = apuesta; // cuanto apostó 
         this.resultado = resultado; // true ganó, false si perdió
     }
 }
 
 function isFloat(n) {
     return n === +n && n !== (n | 0);
-}
-
-function limpiarCampos() {
-    for (i = 0; i <= 36; i++) {
-        document.getElementById("num" + (i)).value = "";
-    }
-    document.getElementById("todoRojo").value = "";
-    document.getElementById("todoNegro").value = "";
 }
 
 function pedirSaldo(viejoSaldo) {
@@ -52,7 +43,15 @@ function agregarSaldo() {
     actualizarSaldo();
 }
 
-function obtenerNumero() {
+function limpiarCampos() {   // Limpiar inputs de apuestas
+    for (i = 0; i <= 36; i++) {
+        document.getElementById("num" + (i)).value = "";
+    }
+    document.getElementById("todoRojo").value = "";
+    document.getElementById("todoNegro").value = "";
+}
+
+function obtenerNumero() {  
     return Math.floor(Math.random() * (37 - 0));
 }
 
@@ -61,9 +60,6 @@ function agregarUltimoNumero(nuevoNumero, ultimosNumeros, coloresNums, apuestaTo
     if (ultimosNumeros.length > ULTIMOSNUMS_MAX) { ultimosNumeros.pop(); }
     ultimosNumeros.unshift(new numeroDeLaRuleta(nuevoNumero, coloresNums[parseInt(nuevoNumero)], ultimoSaldo, apuestaTotal, ganancias, resultado)); // true ganador, false perdedor
     console.log(ultimosNumeros);
-    /*console.log(ultimosNumeros[0]);
-    console.log(ultimosNumeros[0]["numero"]);
-    console.log(ultimosNumeros[0][0]);*/
 }
 
 function mostrarUltimosNums(ultimosNumeros, coloresNums) {
@@ -89,7 +85,7 @@ function mostrarUltimosNums(ultimosNumeros, coloresNums) {
 
 function controlDeMontos(inputArray) {
     inputArray.splice(0, inputArray.length)
-    for (i = 0; i <= 38; i++) {
+    for (i = 0; i < 38; i++) {
 
         if (i <= 36) { valor = document.getElementById("num" + (i)).value; }  // levanta valores de numeros
         else if (i === 37) { valor = document.getElementById("todoRojo").value; }  // valor de Rojo
@@ -182,7 +178,7 @@ const numerosYGrados = [
     { numero: 26, grados: 344 }
 ]
 
-const numerosYGradosNegativos = numerosYGrados.map(item => {
+const numerosYGradosNegativos = numerosYGrados.map(item => {  // Para volver la ruleta a posición original
     return {
         numero: item.numero,
         grados: item.grados + 366
@@ -191,7 +187,6 @@ const numerosYGradosNegativos = numerosYGrados.map(item => {
 
 function animarRuleta(numeroGanador, duration) {
     const resultado = numerosYGrados.find(item => item.numero === numeroGanador);
-
     const image = document.getElementById('imgRuleta');
     image.style.transition = `transform ${duration / 1000}s ease-in-out`;
     image.style.transform = `rotate(${720 - resultado.grados}deg)`;
@@ -199,7 +194,6 @@ function animarRuleta(numeroGanador, duration) {
 
 function reacomodarRuleta(numeroGanador, duration) {
     const resultado = numerosYGradosNegativos.find(item => item.numero === numeroGanador);
-
     const image = document.getElementById('imgRuleta');
     image.style.transition = `transform ${duration / 1000}s ease-in-out`;
     image.style.transform = `rotate(${resultado.grados - 720}deg)`;

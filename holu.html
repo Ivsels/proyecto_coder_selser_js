@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
+
+    <title>Pre-entrega 2</title>
+</head>
+
+<body class="p-0 m-0 colorFondo">
+    <main class="mainClass p-0 m-0">
+        <div class="row arriba paddingTop">
+            <div class="col-4 colorFondo visorSaldo">
+                <input type="text" id="cuadroSaldo" value=" SALDO:  $ 00000" class="field left" readonly>
+            </div>
+            <div class="col-6 colorFondo"><button id="botonSaldo" onclick="agregarSaldo()" class="favorite styled"
+                    type="button">Agregar
+                    Saldo</button></div>
+            <div class="col-2 colorFondo"></div>
+        </div>
+        <div class="row medio">
+            <div class="col-5 colorFondo">
+                <p class="apuestasTexto paddingTop">APUESTAS: </p>
+                <div class="d-flex justify-content agregarBorde">
+                    <div class="row agregarBorde">
+                        <div class=col-2>
+                            <label class="d-block" for="num1">1:</label>
+                            <label class="d-block" for="num4">4:</label>
+                            <label class="d-block" for="num7">7:</label>
+                            <label class="d-block" for="num10">10:</label>
+                            <label class="d-block" for="num13">13:</label>
+                            <label class="d-block" for="num16">16:</label>
+                            <label class="d-block" for="num19">19:</label>
+                            <label class="d-block" for="num22">22:</label>
+                            <label class="d-block" for="num25">25:</label>
+                            <label class="d-block" for="num28">28:</label>
+                            <label class="d-block" for="num31">31:</label>
+                            <label class="d-block" for="num34">34:</label>
+                            <label class="d-block" for="todoRojo">ROJO</label>
+                        </div>
+                        <div class=col-2>
+                            <input class="inputsNums inputRojo" type="text" id="num1" name="num1" />
+                            <input class="inputsNums inputNegro" type="text" id="num4" name="num4" />
+                            <input class="inputsNums inputRojo" type="text" id="num7" name="num7" />
+                            <input class="inputsNums inputNegro" type="text" id="num10" name="num10" />
+                            <input class="inputsNums inputNegro" type="text" id="num13" name="num13" />
+                            <input class="inputsNums inputRojo" type="text" id="num16" name="num16" />
+                            <input class="inputsNums inputRojo" type="text" id="num19" name="num19" />
+                            <input class="inputsNums inputNegro" type="text" id="num22" name="num22" />
+                            <input class="inputsNums inputRojo" type="text" id="num25" name="num25" />
+                            <input class="inputsNums inputNegro" type="text" id="num28" name="num28" />
+                            <input class="inputsNums inputNegro" type="text" id="num31" name="num31" />
+                            <input class="inputsNums inputRojo" type="text" id="num34" name="num34" />
+                        </div>
+                        <div class=col-2>
+                            <label class="d-block" for="num2">2:</label>
+                            <label class="d-block" for="num5">5:</label>
+                            <label class="d-block" for="num8">8:</label>
+                            <label class="d-block" for="num11">11:</label>
+                            <label class="d-block" for="num14">14:</label>
+                            <label class="d-block" for="num17">17:</label>
+                            <label class="d-block" for="num20">20:</label>
+                            <label class="d-block" for="num23">23:</label>
+                            <label class="d-block" for="num26">26:</label>
+                            <label class="d-block" for="num29">29:</label>
+                            <label class="d-block" for="num32">32:</label>
+                            <label class="d-block" for="num35">35:</label>
+                            <label class="d-block" for="num0">0:</label>
+                            <div class="centrarBoton paddingTop">
+                                <button onclick="limpiarCampos()" class="favorite styled tamanioBoton"
+                                    type="button">Limpiar</button>
+                            </div>
+                        </div>
+                        <div class=col-2>
+                            <input class="inputsNums inputRojo" type="text" id="num3" name="num3" />
+                            <input class="inputsNums inputNegro" type="text" id="num6" name="num6" />
+                            <input class="inputsNums inputRojo" type="text" id="num9" name="num9" />
+                            <input class="inputsNums inputRojo" type="text" id="num12" name="num12" />
+                            <input class="inputsNums inputNegro" type="text" id="num15" name="num15" />
+                            <input class="inputsNums inputRojo" type="text" id="num18" name="num18" />
+                            <input class="inputsNums inputRojo" type="text" id="num21" name="num21" />
+                            <input class="inputsNums inputNegro" type="text" id="num24" name="num24" />
+                            <input class="inputsNums inputRojo" type="text" id="num27" name="num27" />
+                            <input class="inputsNums inputRojo" type="text" id="num30" name="num30" />
+                            <input class="inputsNums inputNegro" type="text" id="num33" name="num33" />
+                            <input class="inputsNums inputRojo" type="text" id="num36" name="num36" />
+                            <input class="inputsNums inputNegro" type="text" id="todoNegro" name="todoNegro" />
+                        </div>
+                        <div class=col-2>
+                            <label class="d-block" for="num3">3:</label>
+                            <label class="d-block" for="num6">6:</label>
+                            <label class="d-block" for="num9">9:</label>
+                            <label class="d-block" for="num12">12:</label>
+                            <label class="d-block" for="num15">15:</label>
+                            <label class="d-block" for="num18">18:</label>
+                            <label class="d-block" for="num21">21:</label>
+                            <label class="d-block" for="num24">24:</label>
+                            <label class="d-block" for="num27">27:</label>
+                            <label class="d-block" for="num30">30:</label>
+                            <label class="d-block" for="num33">33:</label>
+                            <label class="d-block" for="num36">36:</label>
+                            <label class="d-block" for="todoNegro">NEGRO</label>
+                        </div>
+                        <div class=col-2>
+                            <input class="inputsNums inputNegro" type="text" id="num2" name="num2" />
+                            <input class="inputsNums inputRojo" type="text" id="num5" name="num5" />
+                            <input class="inputsNums inputNegro" type="text" id="num8" name="num8" />
+                            <input class="inputsNums inputNegro" type="text" id="num11" name="num11" />
+                            <input class="inputsNums inputRojo" type="text" id="num14" name="num14" />
+                            <input class="inputsNums inputNegro" type="text" id="num17" name="num17" />
+                            <input class="inputsNums inputNegro" type="text" id="num20" name="num20" />
+                            <input class="inputsNums inputRojo" type="text" id="num23" name="num23" />
+                            <input class="inputsNums inputNegro" type="text" id="num26" name="num26" />
+                            <input class="inputsNums inputNegro" type="text" id="num29" name="num29" />
+                            <input class="inputsNums inputRojo" type="text" id="num32" name="num32" />
+                            <input class="inputsNums inputNegro" type="text" id="num35" name="num35" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 colorFondo">
+                <div class="roulette">
+
+
+                    <div class="centrarRuleta">
+                        <img id="imgRuleta" class="paddingTop rula" src="./ruleta.png" />
+                        <img id="imgFlecha" class="paddingTop flecha" src="./flecha.png" />
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-2 colorFondo">
+
+                <textarea readonly name="textarea" id="cuadroUltimosNums"
+                    class="field left ultimosNums"> Ultimos Numeros: </textarea>
+            </div>
+        </div>
+        <div class="row abajo">
+            <div class="col-4 colorFondo"></div>
+            <div class="col-6 colorFondo text-center align-middle">
+                <div class="centrarBoton">
+                    <button id="botonGirar" onclick="girarRuleta()" class="favorite styled"
+                        type="button">Girar!</button>
+                </div>
+            </div>
+            <div class="col-2 colorFondo"></div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

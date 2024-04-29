@@ -217,13 +217,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-/*function actualizarDatosUsuarioLS(user){
-    user.usuario = usuario;
-    user.saldo = saldo;
-    user.ultimosNumeros = JSON.stringify(ultimosNumeros);
-    localStorage.setItem(usuario,JSON.stringify(user))
-}*/
-
 function guardarUsuario() {
     let data = {
         usuario: usuario,
@@ -252,23 +245,33 @@ function cargarUsuario(usuario) {
 }
 
 // ESTO SE EJECUTA APENAS CARGA LA WEB
-do {
-    usuario = prompt("Indique su nombre de usuario para guardar/recuperar su progreso:\n(Ej: Pedro, Maria, Diego, etc.)");
-} while (usuario == null || usuario == "" || regex.test(usuario) == false);
 
-datosUsuarioLS = localStorage.getItem(usuario);
-if (datosUsuarioLS !== null) {
-    cargarUsuario(usuario);
-    actualizarSaldo();
-    mostrarUltimosNums(ultimosNumeros, coloresNums);
-    alert("Datos recuperados!");
-} else {
-    user.saldo = saldo;
-    user.usuario = usuario;
-    actualizarSaldo();
-    guardarUsuario();
-    alert("Nuevo usuario creado!");
+function elegirUsuario() {
+    do {
+        usuario = prompt("Indique su nombre de usuario para guardar/recuperar su progreso:\n(Ej: Pedro, Maria, Diego, etc.)");
+    } while (usuario == null || usuario == "" || regex.test(usuario) == false);
+
+    datosUsuarioLS = localStorage.getItem(usuario);
+    if (datosUsuarioLS !== null) {
+        cargarUsuario(usuario);
+        actualizarSaldo();
+        limpiarCampos();
+        mostrarUltimosNums(ultimosNumeros, coloresNums);
+        alert("Datos recuperados!");
+    } else {
+        saldo = 0;
+        user.saldo = saldo;
+        user.usuario = usuario;
+        ultimosNumeros.length=0;
+        limpiarCampos();
+        actualizarSaldo();
+        mostrarUltimosNums(ultimosNumeros, coloresNums);
+        guardarUsuario();
+        alert("Nuevo usuario creado!");
+    }
+
+    let cuadroUsuario = document.getElementById("cuadroUsuario");
+    cuadroUsuario.value = " Usuario: " + usuario;
 }
 
-let cuadroUsuario = document.getElementById("cuadroUsuario");
-cuadroUsuario.value = " Usuario: " + usuario;
+elegirUsuario();

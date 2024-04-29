@@ -1,10 +1,17 @@
-let saldo = 100; // Empezas con 100 pe
-const ultimosNumeros = [];  // Sera un Array de Objetos
+let saldo = 0; // Empezas con 100 pe
+let ultimosNumeros = [];  // Sera un Array de Objetos
 const inputArray = []; // Array de los inputs de Apuesta
 const coloresNums = ["verde", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "negro", "rojo", "negro",
     "rojo", "negro", "rojo", "negro", "rojo", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro",
     "negro", "rojo", "negro", "rojo", "negro", "rojo", "negro", "rojo"];
 const numerosRuleta = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
+let regex = /^[a-zA-Z]+$/;  // Expresión regular que acepta solo letras sin espacios ni números
+
+let user = {
+    usuario: "",
+    ultimosNumeros: [],
+    saldo: 0
+};
 
 class numeroDeLaRuleta {  // Clase para generar objetos "numero" que van saliendo en la Ruleta
     constructor(numero, color, saldoInicial, apuesta, ganancias, resultado) {
@@ -16,6 +23,10 @@ class numeroDeLaRuleta {  // Clase para generar objetos "numero" que van saliend
         this.saldoFinal = saldoInicial + ganancias - apuesta;  // cuanto le quedo
         this.apuesta = apuesta; // cuanto apostó 
         this.resultado = resultado; // true ganó, false si perdió
+    }
+
+    static revivir(data) {
+        return new numeroDeLaRuleta(data.numero, data.color, data.saldoInicial, data.apuesta, data.ganancias, data.resultado);
     }
 }
 
@@ -41,6 +52,7 @@ function actualizarSaldo() {
 function agregarSaldo() {
     saldo = pedirSaldo(saldo);
     actualizarSaldo();
+    guardarUsuario();
 }
 
 function limpiarCampos() {   // Limpiar inputs de apuestas
@@ -51,7 +63,7 @@ function limpiarCampos() {   // Limpiar inputs de apuestas
     document.getElementById("todoNegro").value = "";
 }
 
-function obtenerNumero() {  
+function obtenerNumero() {
     return Math.floor(Math.random() * (37 - 0));
 }
 
@@ -85,7 +97,7 @@ function mostrarUltimosNums(ultimosNumeros, coloresNums) {
 
 function controlDeMontos(inputArray) {
     inputArray.splice(0, inputArray.length)
-    for (i = 0; i < 38; i++) {
+    for (i = 0; i <= 38; i++) {
 
         if (i <= 36) { valor = document.getElementById("num" + (i)).value; }  // levanta valores de numeros
         else if (i === 37) { valor = document.getElementById("todoRojo").value; }  // valor de Rojo
@@ -163,6 +175,8 @@ function girarRuleta() {
             document.getElementById("botonSaldo").disabled = false;
         });
     });
+
+    guardarUsuario();
 }
 
 const numerosYGrados = [
@@ -202,3 +216,59 @@ function reacomodarRuleta(numeroGanador, duration) {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+/*function actualizarDatosUsuarioLS(user){
+    user.usuario = usuario;
+    user.saldo = saldo;
+    user.ultimosNumeros = JSON.stringify(ultimosNumeros);
+    localStorage.setItem(usuario,JSON.stringify(user))
+}*/
+
+function guardarUsuario() {
+    let data = {
+        usuario: usuario,
+        ultimosNumeros: ultimosNumeros.map(num => ({
+            numero: num.numero,
+            color: num.color,
+            hora: num.hora,
+            saldoInicial: num.saldoInicial,
+            ganancias: num.ganancias,
+            saldoFinal: num.saldoFinal,
+            apuesta: num.apuesta,
+            resultado: num.resultado
+        })),
+        saldo: saldo
+    };
+    localStorage.setItem(usuario, JSON.stringify(data));
+}
+
+function cargarUsuario(usuario) {
+    const data = JSON.parse(localStorage.getItem(usuario));
+    if (data) {
+        user.usuario = data.usuario;
+        ultimosNumeros.splice(0, ultimosNumeros.length, ...data.ultimosNumeros.map(item => numeroDeLaRuleta.revivir(item)));
+        saldo = data.saldo;
+    }
+}
+
+// ESTO SE EJECUTA APENAS CARGA LA WEB
+do {
+    usuario = prompt("Indique su nombre de usuario para guardar/recuperar su progreso:\n(Ej: Pedro, Maria, Diego, etc.)");
+} while (usuario == null || usuario == "" || regex.test(usuario) == false);
+
+datosUsuarioLS = localStorage.getItem(usuario);
+if (datosUsuarioLS !== null) {
+    cargarUsuario(usuario);
+    actualizarSaldo();
+    mostrarUltimosNums(ultimosNumeros, coloresNums);
+    alert("Datos recuperados!");
+} else {
+    user.saldo = saldo;
+    user.usuario = usuario;
+    actualizarSaldo();
+    guardarUsuario();
+    alert("Nuevo usuario creado!");
+}
+
+let cuadroUsuario = document.getElementById("cuadroUsuario");
+cuadroUsuario.value = " Usuario: " + usuario;
